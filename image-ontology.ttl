@@ -1,0 +1,238 @@
+#################################PREFIXES################################
+
+@prefix : <http://id.ukpds.org/schema/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> . 
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+
+
+#################################ONTOLOGY#################################
+
+: 
+	a owl:Ontology ;
+.
+
+#################################CLASSES##################################
+
+:Image
+	a owl:Class ;
+	rdfs:comment "A image file, 2D unless otherwise stated, stored in the highest available quality" ;
+.
+:Photograph
+	rdfs:subClassOf :Image ;
+.
+:ImageSubject
+	a owl:Class ;
+.
+:ImageZone
+	a owl:Class ;
+.
+:Image
+	a owl:Class ;
+.
+:UsageLicence
+	a owl:Class ;
+.
+:GeoLocation
+	rdfs:subClassOf :GeographicalThing ;
+.
+:ImageCoordinate
+	a owl:Class ;
+	rdfs:comment "The co-ordinate that marks the top left point of the sub-image" ;
+.
+:ImageCreator
+	a owl:Class ;
+	rdfs:subClassOf :Agent;
+.
+:ImageModifier
+	a owl:Class ;
+	rdfs:subClassOf :Agent;
+.
+:ImageOwner
+	a owl:Class ;
+	rdfs:subClassOf :Agent;
+.
+:Logo
+	a owl:Class ;
+.
+:Agent
+	a owl:Class ;
+.
+:Resolution
+	a owl:Class
+.
+:ImageModification
+	a owl:Class ;
+.
+:ImageModificationType
+	a owl:Class ;
+.
+##########################OBJECT PROPERTIES##############################
+
+:imageHasImageModification
+	a owl:ObjectProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range :ImageModification ;
+.
+:imageModificationHasImageModificationType
+	a owl:ObjectProperty ; 
+	rdfs:domain :ImageModification ;
+	rdfs:range :ImageModificationType ;
+.
+:imageModificationHasImageModifier
+	a owl:ObjectProperty ; 
+	rdfs:domain :ImageModification ;
+	rdfs:range :ImageModifier ;
+.
+:imageHasImageSubject
+	a owl:ObjectProperty ; 
+	rdfs:subPropertyOf foaf:depicts ;
+	rdfs:domain :Image ;
+	rdfs:range :ImageSubject ;
+.
+:imageHasImageCoordinate
+	a owl:ObjectProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range :ImageCoordinate ;
+.
+:imageCoordinateHasImageZone
+	a owl:ObjectProperty ; 
+	rdfs:domain :ImageCoordinate ;
+	rdfs:range :ImageZone ;
+.
+:imageZoneHasImageSubject
+	a owl:ObjectProperty ; 
+	rdfs:subPropertyOf foaf:depicts ;
+	rdfs:domain :ImageZone ;
+	rdfs:range :ImageSubject ;
+.
+:imageHasUsageLicence
+	a owl:ObjectProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range :UsageLicence ;
+.
+:photographHasGeoLocation
+	a owl:ObjectProperty ; 
+	rdfs:domain :Photograph ;
+	rdfs:range :GeoLocation ;
+.
+:imageHasImageCreator
+	a owl:ObjectProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range :ImageCreator ;
+.
+:imageHasImageOwner
+	a owl:ObjectProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range :ImageOwner ;
+.
+:agentHasLogo
+	a owl:ObjectProperty ; 
+	rdfs:subPropertyOf foaf:logo ;
+	rdfs:domain :Agent ;
+	rdfs:range :Logo ;
+.
+:imageHasResolution
+	a owl:ObjectProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range :Resolution ;
+.
+
+########################DATATYPE PROPERTIES##############################
+
+:imageStorageLocation
+	a owl:DatatypeProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range xsd:string ;
+.
+:imageCreatedAt
+	a owl:DatatypeProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range xsd:dateTime ;
+.
+:usageLicenceName
+	a owl:DatatypeProperty ; 
+	rdfs:domain :UsageLicence ;
+	rdfs:range xsd:string ;
+.
+:usageLicenceDetails 
+	a owl:DatatypeProperty ; 
+	rdfs:domain :UsageLicence ;
+	rdfs:range xsd:string ;
+.
+:genericExifStuff
+	a owl:DatatypeProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Consider whether to add basically everything that's described in exif" ;
+.
+:imageWidth
+	a owl:DatatypeProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "Image width in pixels" ;
+.
+:imageLength
+	a owl:DatatypeProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "Image height in pixels" ;
+.
+:bitsPerSample
+	a owl:DatatypeProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "Number of bits per component in each channel." ;
+.
+:compression
+	a owl:DatatypeProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range xsd:string ;
+.
+:samplesPerPixel
+	a owl:DatatypeProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range xsd:integer ;
+.
+:photographExifStuff
+	a owl:DatatypeProperty ; 
+	rdfs:domain :Photograph ;
+	rdfs:range xsd:string ;
+	rdfs:comment "Consider whether to add basically everything that's described in exif" ;
+.
+:xpacketId
+	a owl:DatatypeProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range xsd:string ;
+	rdfs:comment "The XMP system gives us a way to track an image through its editing" ;
+.
+:xResolution
+	a owl:DatatypeProperty ; 
+	rdfs:domain :Resolution ;
+	rdfs:range xsd:integer ;
+.
+:yResolution
+	a owl:DatatypeProperty ; 
+	rdfs:domain :Resolution ;
+	rdfs:range xsd:integer ;
+.
+:resolutionUnit
+	a owl:DatatypeProperty ; 
+	rdfs:domain :Resolution ;
+	rdfs:range xsd:string ;
+.
+:imageSoftware
+	a owl:DatatypeProperty ; 
+	rdfs:domain :Image ;
+	rdfs:range xsd:integer ;
+	rdfs:comment "Software used to create image" ;
+.
+:imageModifiedAt
+	a owl:DatatypeProperty ; 
+	rdfs:domain :ImageModification ;
+	rdfs:range xsd:dateTime ;
+.
