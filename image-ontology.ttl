@@ -24,70 +24,52 @@
 .
 :Photograph
 	rdfs:subClassOf :Image ;
+	rdfs:comment "A Image taken with a camera" ;
 .
 :ImageSubject
 	a owl:Class ;
+	rdfs:comment "A thing that appears in the image - what the image is at partially or wholly 'of'" ;
 .
 :ImageZone
 	a owl:Class ;
-.
-:Image
-	a owl:Class ;
+	rdfs:comment "An area within a image, that will be used to identify multiple ImageSubjects" ;
 .
 :UsageLicence
 	a owl:Class ;
+	rdfs:comment "The licence of the image's use, such as GNU or various Creative Commons licences" ;
 .
 :GeoLocation
 	rdfs:subClassOf :GeographicalThing ;
+	rdfs:comment "An area within a image, that will be used to identify multiple ImageSubjects" ;
 .
 :ImageCoordinate
 	a owl:Class ;
-	rdfs:comment "The co-ordinate that marks the top left point of the sub-image" ;
+	rdfs:comment "A coordinate used to identify the location of the ImageZone within the Image" ;
 .
 :ImageCreator
 	a owl:Class ;
 	rdfs:subClassOf :Agent;
-.
-:ImageModifier
-	a owl:Class ;
-	rdfs:subClassOf :Agent;
+	rdfs:comment "The creator of the image - photographer, artist, designer of a diagram etc" ;
 .
 :ImageOwner
 	a owl:Class ;
 	rdfs:subClassOf :Agent;
+	rdfs:comment "The entity with the legal rights to the image and its use" ;
 .
 :Logo
 	a owl:Class ;
+	rdfs:comment "A graphic mark, emblem, or symbol used to represent an organisation or person" ;
 .
 :Agent
 	a owl:Class ;
+	rdfs:comment "Per our agency ontology, essentially a superclass of organisation and person" ;
 .
-:Resolution
+:ImageResolution
 	a owl:Class
-.
-:ImageModification
-	a owl:Class ;
-.
-:ImageModificationType
-	a owl:Class ;
+	rdfs:comment "An image's resolution" ;
 .
 ##########################OBJECT PROPERTIES##############################
 
-:imageHasImageModification
-	a owl:ObjectProperty ; 
-	rdfs:domain :Image ;
-	rdfs:range :ImageModification ;
-.
-:imageModificationHasImageModificationType
-	a owl:ObjectProperty ; 
-	rdfs:domain :ImageModification ;
-	rdfs:range :ImageModificationType ;
-.
-:imageModificationHasImageModifier
-	a owl:ObjectProperty ; 
-	rdfs:domain :ImageModification ;
-	rdfs:range :ImageModifier ;
-.
 :imageHasImageSubject
 	a owl:ObjectProperty ; 
 	rdfs:subPropertyOf foaf:depicts ;
@@ -136,10 +118,10 @@
 	rdfs:domain :Agent ;
 	rdfs:range :Logo ;
 .
-:imageHasResolution
+:imageHasImageResolution
 	a owl:ObjectProperty ; 
 	rdfs:domain :Image ;
-	rdfs:range :Resolution ;
+	rdfs:range :ImageResolution ;
 .
 
 ########################DATATYPE PROPERTIES##############################
@@ -210,19 +192,19 @@
 	rdfs:range xsd:string ;
 	rdfs:comment "The XMP system gives us a way to track an image through its editing" ;
 .
-:xResolution
+:imageXResolution
 	a owl:DatatypeProperty ; 
-	rdfs:domain :Resolution ;
+	rdfs:domain :ImageResolution ;
 	rdfs:range xsd:integer ;
 .
-:yResolution
+:imageYResolution
 	a owl:DatatypeProperty ; 
-	rdfs:domain :Resolution ;
+	rdfs:domain :ImageResolution ;
 	rdfs:range xsd:integer ;
 .
-:resolutionUnit
+:imageResolutionUnit
 	a owl:DatatypeProperty ; 
-	rdfs:domain :Resolution ;
+	rdfs:domain :ImageResolution ;
 	rdfs:range xsd:string ;
 .
 :imageSoftware
