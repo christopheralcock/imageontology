@@ -48,12 +48,12 @@
 .
 :ImageCreator
 	a owl:Class ;
-	rdfs:subClassOf :Agent;
+	rdfs:subClassOf :Agent ;
 	rdfs:comment "The creator of the image - photographer, artist, designer of a diagram etc" ;
 .
 :ImageOwner
 	a owl:Class ;
-	rdfs:subClassOf :Agent;
+	rdfs:subClassOf :Agent ;
 	rdfs:comment "The entity with the legal rights to the image and its use" ;
 .
 :Logo
@@ -146,12 +146,6 @@
 	rdfs:domain :UsageLicence ;
 	rdfs:range xsd:string ;
 .
-:genericExifStuff
-	a owl:DatatypeProperty ; 
-	rdfs:domain :Image ;
-	rdfs:range xsd:string ;
-	rdfs:comment "Consider whether to add basically everything that's described in exif" ;
-.
 :imageWidth
 	a owl:DatatypeProperty ; 
 	rdfs:domain :Image ;
@@ -179,18 +173,6 @@
 	a owl:DatatypeProperty ; 
 	rdfs:domain :Image ;
 	rdfs:range xsd:integer ;
-.
-:photographExifStuff
-	a owl:DatatypeProperty ; 
-	rdfs:domain :Photograph ;
-	rdfs:range xsd:string ;
-	rdfs:comment "Consider whether to add basically everything that's described in exif" ;
-.
-:xpacketId
-	a owl:DatatypeProperty ; 
-	rdfs:domain :Image ;
-	rdfs:range xsd:string ;
-	rdfs:comment "The XMP system gives us a way to track an image through its editing" ;
 .
 :imageXResolution
 	a owl:DatatypeProperty ; 
