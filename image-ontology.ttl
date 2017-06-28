@@ -65,7 +65,7 @@
 	rdfs:comment "Per our agency ontology, essentially a superclass of organisation and person" ;
 .
 :ImageResolution
-	a owl:Class
+	a owl:Class ;
 	rdfs:comment "An image's resolution" ;
 .
 ##########################OBJECT PROPERTIES##############################
